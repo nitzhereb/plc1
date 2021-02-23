@@ -2,7 +2,7 @@
 <Document>
   <Engineering version="V16" />
   <DocumentInfo>
-    <Created>2021-02-23T18:08:30.3901123Z</Created>
+    <Created>2021-02-23T18:09:47.0002087Z</Created>
     <ExportSetting>WithDefaults</ExportSetting>
     <InstalledProducts>
       <Product>
@@ -47,7 +47,7 @@
       </Product>
     </InstalledProducts>
   </DocumentInfo>
-  <SW.Blocks.OB ID="0">
+  <SW.Blocks.FB ID="0">
     <AttributeList>
       <AutoNumber>true</AutoNumber>
       <HeaderAuthor />
@@ -55,28 +55,23 @@
       <HeaderName />
       <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v4">
-  <Section Name="Input">
-    <Member Name="Initial_Call" Datatype="Bool" Accessibility="Public" Informative="true">
-      <Comment>
-        <MultiLanguageText Lang="en-US">Initial call of this OB</MultiLanguageText>
-      </Comment>
-    </Member>
-    <Member Name="Remanence" Datatype="Bool" Accessibility="Public" Informative="true">
-      <Comment>
-        <MultiLanguageText Lang="en-US">=True, if remanent data are available</MultiLanguageText>
-      </Comment>
-    </Member>
-  </Section>
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static" />
   <Section Name="Temp" />
   <Section Name="Constant" />
 </Sections></Interface>
       <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
       <MemoryLayout>Optimized</MemoryLayout>
-      <Name>Main</Name>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>FB1</Name>
       <Number>1</Number>
       <ProgrammingLanguage>LAD</ProgrammingLanguage>
-      <SecondaryType>ProgramCycle</SecondaryType>
       <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
     </AttributeList>
     <ObjectList>
       <MultilingualText ID="1" CompositionName="Comment">
@@ -93,14 +88,35 @@
         <AttributeList>
           <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
   <Parts>
-    <Call UId="21">
-      <CallInfo Name="FC1" BlockType="FC" />
-    </Call>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Tag_6" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="Tag_7" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="23" />
+    <Part Name="Coil" UId="24" />
   </Parts>
   <Wires>
-    <Wire UId="22">
+    <Wire UId="25">
       <Powerrail />
-      <NameCon UId="21" Name="en" />
+      <NameCon UId="23" Name="in" />
+    </Wire>
+    <Wire UId="26">
+      <IdentCon UId="21" />
+      <NameCon UId="23" Name="operand" />
+    </Wire>
+    <Wire UId="27">
+      <NameCon UId="23" Name="out" />
+      <NameCon UId="24" Name="in" />
+    </Wire>
+    <Wire UId="28">
+      <IdentCon UId="22" />
+      <NameCon UId="24" Name="operand" />
     </Wire>
   </Wires>
 </FlgNet></NetworkSource>
@@ -131,23 +147,7 @@
       </SW.Blocks.CompileUnit>
       <SW.Blocks.CompileUnit ID="8" CompositionName="CompileUnits">
         <AttributeList>
-          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
-  <Parts>
-    <Call UId="21">
-      <CallInfo Name="FB1" BlockType="FB">
-        <Instance Scope="GlobalVariable" UId="22">
-          <Component Name="FB1_DB" />
-        </Instance>
-      </CallInfo>
-    </Call>
-  </Parts>
-  <Wires>
-    <Wire UId="23">
-      <Powerrail />
-      <NameCon UId="21" Name="en" />
-    </Wire>
-  </Wires>
-</FlgNet></NetworkSource>
+          <NetworkSource />
           <ProgrammingLanguage>LAD</ProgrammingLanguage>
         </AttributeList>
         <ObjectList>
@@ -173,44 +173,16 @@
           </MultilingualText>
         </ObjectList>
       </SW.Blocks.CompileUnit>
-      <SW.Blocks.CompileUnit ID="D" CompositionName="CompileUnits">
-        <AttributeList>
-          <NetworkSource />
-          <ProgrammingLanguage>LAD</ProgrammingLanguage>
-        </AttributeList>
+      <MultilingualText ID="D" CompositionName="Title">
         <ObjectList>
-          <MultilingualText ID="E" CompositionName="Comment">
-            <ObjectList>
-              <MultilingualTextItem ID="F" CompositionName="Items">
-                <AttributeList>
-                  <Culture>en-US</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-            </ObjectList>
-          </MultilingualText>
-          <MultilingualText ID="10" CompositionName="Title">
-            <ObjectList>
-              <MultilingualTextItem ID="11" CompositionName="Items">
-                <AttributeList>
-                  <Culture>en-US</Culture>
-                  <Text />
-                </AttributeList>
-              </MultilingualTextItem>
-            </ObjectList>
-          </MultilingualText>
-        </ObjectList>
-      </SW.Blocks.CompileUnit>
-      <MultilingualText ID="12" CompositionName="Title">
-        <ObjectList>
-          <MultilingualTextItem ID="13" CompositionName="Items">
+          <MultilingualTextItem ID="E" CompositionName="Items">
             <AttributeList>
               <Culture>en-US</Culture>
-              <Text>"Main Program Sweep (Cycle)"</Text>
+              <Text />
             </AttributeList>
           </MultilingualTextItem>
         </ObjectList>
       </MultilingualText>
     </ObjectList>
-  </SW.Blocks.OB>
+  </SW.Blocks.FB>
 </Document>
